@@ -2,7 +2,6 @@ package com.profCom.controller;
 
 import com.profCom.entity.Password;
 import com.profCom.service.Password.PasswordService;
-import com.profCom.sysLogic.LoginPassword;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -29,13 +28,18 @@ public class PasswordController {
 
     @RequestMapping(value = "/Password", method = RequestMethod.POST)
     @ResponseBody
-    public Password savePassword(@RequestBody Password Password) {
-        return service.save(Password);
+    public Password savePassword(@RequestBody Password password) throws Exception {
+        if(service.getByID(password.login)==null)
+        return service.save(password);
+        else throw new Exception("this login is used by another user");
     }
 
     @RequestMapping(value = "/Password/{login}", method = RequestMethod.DELETE)
     @ResponseBody
-    public void delete(@PathVariable String login) {
+    public void delete(@PathVariable String login) throws Exception {
+
+        if(service.getByID(login)!=null)
         service.remove(login);
+        else throw new Exception("user with this login doesn't exist");
     }
 }

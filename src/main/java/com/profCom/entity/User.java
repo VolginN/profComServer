@@ -1,8 +1,13 @@
 package com.profCom.entity;
 
 import org.hibernate.annotations.GenericGenerator;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 /**
  * Created by VolgiNN on 08.12.2016.
@@ -24,12 +29,44 @@ public class User {
     @Column(name="lastName",nullable = false, length = 50)
     public String lastName;
 
-    @Column(name="feePay")
-    public boolean feePay;
+    @Column(name="feePay", nullable = false, length=15)
+    public String feePay;
 
     @Column(name="avatar")
     public byte[] avatar;
 
+    @Column(name="budget", nullable = false, length=10)
+    public String budget;
+
+    @Column(name="fulltime", nullable = false, length=10)
+    public String fulltime;
+
+    @Column(name="tabNum", length=50)
+    public String tabNum;
+
+
+
+    public User() {
+    }
+    public String getTabNum() {
+        return tabNum;
+    }
+    public void setTabNum(String tabNum) {
+        this.tabNum = tabNum;
+    }
+    public String getBudget() {
+
+        return budget;
+    }
+    public void setBudget(String budget) {
+        this.budget = budget;
+    }
+    public String getFulltime() {
+        return fulltime;
+    }
+    public void setFulltime(String fulltime) {
+        this.fulltime = fulltime;
+    }
     public long getId() {
         return id;
     }
@@ -54,10 +91,10 @@ public class User {
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
-    public boolean isFeePay() {
+    public String getFeePay() {
         return feePay;
     }
-    public void setFeePay(boolean feePay) {
+    public void setFeePay(String feePay) {
         this.feePay = feePay;
     }
     public byte[] getAvatar() {
