@@ -21,7 +21,7 @@ public class Password{
     }
 
     @OneToOne
-    @JoinColumn(name="id")
+    @JoinColumn(name="id",nullable = false)
     public User user;
 
     public String getLogin() {

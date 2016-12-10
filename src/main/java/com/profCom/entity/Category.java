@@ -19,7 +19,7 @@ public class Category {
     @GenericGenerator(name="increment",strategy = "increment")
     public Integer id;
 
-    @Column(name="name", length = 50)
+    @Column(name="name", length = 50,nullable = false)
     public String name;
 
     public void setId(Integer id) {

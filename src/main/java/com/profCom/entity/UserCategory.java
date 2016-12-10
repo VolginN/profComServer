@@ -18,11 +18,11 @@ public class UserCategory  {
     public long id;
 
     @OneToOne
-    @JoinColumn(name="Uid")
+    @JoinColumn(name="Uid",nullable = false)
     public User user;
 
     @OneToOne
-    @JoinColumn(name="Cid")
+    @JoinColumn(name="Cid",nullable = false)
     public Category category;
 
     public UserCategory() {

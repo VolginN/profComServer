@@ -50,4 +50,14 @@ public class UserCategoryController {
         }
         return true;
     }
+
+    @RequestMapping(value = "/UserCategory/{Uid}/{Cid}", method = RequestMethod.POST)
+    @ResponseBody
+    public UserCategory save(@RequestBody UserCategory userCategory) throws Exception {
+        if (!searchByUidAndCid(userCategory.getUser().getId(),userCategory.getCategory().getId()))
+        {
+            return service.save(userCategory);
+        }
+        throw new Exception("this combination user/category is already exist");
+    }
 }

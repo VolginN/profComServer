@@ -15,10 +15,10 @@ public class FAQObject {
     @GenericGenerator(name="increment",strategy = "increment")
     public long id;
 
-    @Column(name="question")
+    @Column(name="question",nullable = false)
     public String question;
 
-    @Column(name="answer")
+    @Column(name="answer",nullable = false)
     public String answer;
 
     public long getId() {
