@@ -26,8 +26,11 @@ public class NewsCategoryServiceImpl implements NewsCategoryService {
         return repository.findOne(id);
     }
 
-    public NewsCategory save(NewsCategory newsCategory) {
-        return repository.saveAndFlush(newsCategory);
+    public NewsCategory save(NewsCategory newsCategory) throws Exception {
+        if (findByNewsAndCategory(newsCategory.getNews(), newsCategory.getCategory()).isEmpty()) {
+            return repository.saveAndFlush(newsCategory);
+        }
+        throw new Exception("this combination news/category is already exist");
     }
 
     public void remove(long id) {

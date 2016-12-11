@@ -27,15 +27,13 @@ public class NewsCategoryController {
     public NewsCategory getNewsCategory(@PathVariable("id") long newsCategoryID) {
         return service.getByID(newsCategoryID);
     }
-
+//НАПИСАТЬ ФУНКЦИИ ПОИСКА НОВСТЕЙ ПО КАТЕГОРИИ
     @RequestMapping(value = "/NewsCategory", method = RequestMethod.POST)
     @ResponseBody
-    public NewsCategory saveNewsCategory(@RequestBody NewsCategory newsCategory) throws Exception {
-        if (service.findByNewsAndCategory(newsCategory.getNews(), newsCategory.getCategory()).isEmpty()) {
-            return service.save(newsCategory);
-        }
-        throw new Exception("this combination news/category is already exist");
+    public NewsCategory save(@RequestBody NewsCategory newsCategory) throws Exception {
+        return service.save(newsCategory);
     }
+
     @RequestMapping(value = "/NewsCategory/{id}", method = RequestMethod.DELETE)
     @ResponseBody
     public void delete(@PathVariable long id) {

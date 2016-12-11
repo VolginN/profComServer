@@ -44,7 +44,7 @@ public class FAQObjectController {
 
     @RequestMapping(value = "/FAQObject/search", method = RequestMethod.POST)
     @ResponseBody
-    public List<FAQObject> search(@RequestBody Question question){
+    public List<FAQObject> findByQuestion(@RequestBody Question question){
         return service.findByQuestion(question.question);
     }
 }

@@ -17,7 +17,7 @@ public class NewsController {
 
     @RequestMapping(value = "/News", method = RequestMethod.GET)
     @ResponseBody
-    public List<News> getAllNewss() {
+    public List<News> getAllNews() {
         return service.getAll();
     }
 

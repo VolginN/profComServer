@@ -16,13 +16,8 @@ public class PasswordController {
 
     @RequestMapping(value = "/Password/{login}/{password}", method = RequestMethod.GET)
     @ResponseBody
-    public long login(@PathVariable("login") String login,@PathVariable("password") String password) {
-        Password pass = service.getByID(login);
-        if (pass == null)
-            return -2;
-        if (password.equals(pass.password))
-            return pass.user.id;
-        return -1;
+    public long autorizate(@PathVariable("login") String login,@PathVariable("password") String password) {
+       return service.autorizate(login,password);
     }
 
 

@@ -30,34 +30,13 @@ public class UserCategoryController {
 
     @RequestMapping(value = "/UserCategory/{Uid}", method = RequestMethod.GET)
     @ResponseBody
-    public List<Category> getCategoriesByUid(@PathVariable("Uid") Long Uid){
-        List<UserCategory> listUC=service.findByUser(userService.getByID(new Long(Uid)));
-        List<Category> listC=new ArrayList<Category>();
-        for(UserCategory UC:listUC)
-        {
-            listC.add(UC.category);
-        }
-        return listC;
+    public List<Category> getUserCategories(@PathVariable("Uid") Long Uid){
+        return service.getUserCategories(Uid);
     }
 
-    @RequestMapping(value = "/UserCategory/{Uid}/{Cid}", method = RequestMethod.GET)
-    @ResponseBody
-    public boolean searchByUidAndCid(@PathVariable("Uid") Long Uid,@PathVariable("Cid") Integer Cid){
-        List<UserCategory> userCategory=service.findByUserAndCategory(userService.getByID(new Long(Uid)),categoryService.getByID(Cid));
-        if (userCategory.isEmpty())
-        {
-            return false;
-        }
-        return true;
-    }
-
-    @RequestMapping(value = "/UserCategory/{Uid}/{Cid}", method = RequestMethod.POST)
+    @RequestMapping(value = "/UserCategory", method = RequestMethod.POST)
     @ResponseBody
     public UserCategory save(@RequestBody UserCategory userCategory) throws Exception {
-        if (!searchByUidAndCid(userCategory.getUser().getId(),userCategory.getCategory().getId()))
-        {
-            return service.save(userCategory);
-        }
-        throw new Exception("this combination user/category is already exist");
+        return service.save(userCategory);
     }
 }

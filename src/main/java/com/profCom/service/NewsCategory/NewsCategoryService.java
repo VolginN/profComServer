@@ -12,7 +12,7 @@ import java.util.List;
 public interface NewsCategoryService {
     List<NewsCategory> getAll();
     NewsCategory getByID(long id);
-    NewsCategory save(NewsCategory newsCategory);
+    NewsCategory save(NewsCategory newsCategory) throws Exception;
     void remove(long id);
     List<NewsCategory> findByNews(News news);
     List<NewsCategory> findByNewsAndCategory(News news, Category category);
