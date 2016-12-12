@@ -40,7 +40,7 @@ public class UserController {
 
     @RequestMapping(value = "/User/{id}", method = RequestMethod.DELETE)
     @ResponseBody
-    public void delete(@PathVariable long id) {
+    public void delete(@PathVariable("id") long id) {
         service.remove(id);
     }
 }

@@ -15,7 +15,7 @@ public class FAQObject {
     @GenericGenerator(name="increment",strategy = "increment")
     public long id;
 
-    @Column(name="question",nullable = false)
+    @Column(name="question",nullable = false, unique = true)
     public String question;
 
     @Column(name="answer",nullable = false)

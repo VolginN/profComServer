@@ -28,7 +28,7 @@ public class UserCategoryController {
     @Autowired
     private CategoryService categoryService;
 
-    @RequestMapping(value = "/UserCategory/{Uid}", method = RequestMethod.GET)
+    @RequestMapping(value = "/User/Category/{Uid}", method = RequestMethod.GET)
     @ResponseBody
     public List<Category> getUserCategories(@PathVariable("Uid") Long Uid){
         return service.getUserCategories(Uid);

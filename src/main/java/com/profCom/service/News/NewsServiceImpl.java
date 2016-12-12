@@ -5,6 +5,7 @@ import com.profCom.repository.NewsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -30,5 +31,44 @@ public class NewsServiceImpl implements NewsService {
 
     public void remove(long id) {
         repository.delete(id);
+    }
+
+    public List<News> getNewsFromTo(long from, long to) {
+        List<News> listN=new ArrayList<News>();
+        News n=new News();
+        n.message="123";
+        n.title="123";
+        n=save(n);
+        long max =n.getId();
+        remove(max);
+        for (Long i=from;i<to;i++)
+        {
+            n=repository.findOne(max-i);
+            if (n!=null)
+            listN.add(n);
+            if ((max-i)<1)
+            {
+                return listN;
+            }
+        }
+        return listN;
+    }
+
+    public Long getMaxId() {
+        News n=new News();
+        n.message="123";
+        n.title="123";
+        n=save(n);
+        long max =n.getId();
+        remove(max);
+        while(max<0)
+        {
+            n=getByID(max);
+            if (n!=null)
+            {
+                return n.getId();
+            }
+        }
+        return null;
     }
 }

@@ -1,9 +1,8 @@
 package com.profCom.controller;
 
-import com.profCom.entity.Category;
 import com.profCom.entity.FAQObject;
 import com.profCom.service.FAQObject.FAQObjectService;
-import com.profCom.sysLogic.Question;
+import com.profCom.sysLogic.StringIn;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -44,7 +43,7 @@ public class FAQObjectController {
 
     @RequestMapping(value = "/FAQObject/search", method = RequestMethod.POST)
     @ResponseBody
-    public List<FAQObject> findByQuestion(@RequestBody Question question){
-        return service.findByQuestion(question.question);
+    public List<FAQObject> findByQuestion(@RequestBody StringIn question){
+        return service.findByQuestion(question.stringIn);
     }
 }

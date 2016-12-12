@@ -35,7 +35,20 @@ public class NewsController {
 
     @RequestMapping(value = "/News/{id}", method = RequestMethod.DELETE)
     @ResponseBody
-    public void delete(@PathVariable long id) {
+    public void delete(@PathVariable("id") long id) {
         service.remove(id);
     }
+
+    @RequestMapping(value = "/News/{from}/{to}", method = RequestMethod.GET)
+    @ResponseBody
+    public void getNewsFromTo(@PathVariable("from") long from,@PathVariable("to") long to) {
+        service.getNewsFromTo(from,to);
+    }
+
+    @RequestMapping(value = "/News/MaxId", method = RequestMethod.GET)
+    @ResponseBody
+    public Long getMAxId() {
+        return service.getMaxId();
+    }
+
 }
